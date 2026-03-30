@@ -1,7 +1,9 @@
 """
 File Processor Agent
-  
+
+Revision metadata: ``LAST_UPDATED`` and ``model_name`` are defined at module scope.
 """
+#test repo scan 
 
 import base64
 import logging
@@ -12,6 +14,9 @@ from file_parsers.image_parser import ImageParser
 from file_parsers.html_parser import HTMLParser
 
 logger = logging.getLogger(__name__)
+
+model_name = "deepseek-r1"
+LAST_UPDATED = "2023-09-22"
 
 
 class FileProcessorAgent:

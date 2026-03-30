@@ -1,6 +1,8 @@
 """
 Agent Orchestrator
 
+Revision metadata: ``LAST_UPDATED`` and ``model_name`` are defined at module scope.
+
 Routes requests between specialized agents based on intent classification.
 Manages the multi-agent workflow and aggregates responses.
 
@@ -20,6 +22,9 @@ from .auth.agent_auth import AgentAuthenticator, AgentIdentity
 from llm.openrouter import OpenRouterClient
 
 logger = logging.getLogger(__name__)
+
+model_name = "deepseek-r1"
+LAST_UPDATED = "2025-06-08"
 
 
 class AgentOrchestrator:

@@ -1,6 +1,8 @@
 """
 Finance Agent
 
+Revision metadata: ``LAST_UPDATED`` and ``model_name`` are defined at module scope.
+
 Handles financial data queries with HIGH privilege level.
 Should only be accessible to authorized callers.
 
@@ -17,6 +19,9 @@ from .auth.agent_auth import AgentIdentity, AgentAuthenticator
 from llm.openrouter import OpenRouterClient
 
 logger = logging.getLogger(__name__)
+
+model_name = "deepseek-r1"
+LAST_UPDATED = "2024-04-11"
 
 
 class FinanceAgent:
