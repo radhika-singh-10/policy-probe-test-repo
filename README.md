@@ -86,20 +86,20 @@ policyprobe/
 │   ├── src/
 │   │   ├── app/                 # Next.js app router
 │   │   └── components/          # React components
-│   └── package.json             # ⚠️ Vulnerable npm deps
+│   └── package.json             # npm dependencies (keep updated)
 │
 ├── backend/                     # Python FastAPI backend
 │   ├── agents/                  # Multi-agent system
 │   │   ├── orchestrator.py      # Request routing
 │   │   ├── tech_support.py      # Low privilege agent
 │   │   ├── finance.py           # High privilege agent
-│   │   └── auth/                # ⚠️ Auth bypass
+│   │   └── auth/                # JWT-based agent authentication
 │   ├── policies/                # Policy modules
-│   │   ├── pii_detection.py     # ⚠️ NO-OP detection
-│   │   ├── prompt_injection.py  # ⚠️ NO-OP detection
+│   │   ├── pii_detection.py     # PII detection and blocking
+│   │   ├── prompt_injection.py  # Prompt injection detection
 │   │   └── runtime/             # Runtime guardrails
 │   ├── file_parsers/            # File processing
-│   └── requirements.txt         # ⚠️ Vulnerable Python deps
+│   └── requirements.txt         # Python dependencies (keep updated)
 │
 ├── config/                      # Policy configuration
 ├── test_files/                  # Demo test files
@@ -205,8 +205,16 @@ python scripts/create_test_files.py
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `OPENROUTER_API_KEY` | OpenRouter API key for LLM | Yes |
-| `JWT_SECRET` | Secret for JWT signing (after remediation) | No |
+| `JWT_SECRET` | Secret for JWT signing — must be set to a strong random value via environment; never hardcode | Yes (after remediation) |
 | `BACKEND_URL` | Backend URL for frontend | No (default: localhost:5500) |
+
+## Security Notes
+
+- Never commit `.env` files or secrets to version control
+- Ensure `JWT_SECRET` is set to a cryptographically strong random value in production
+- Keep all dependencies up to date and run `npm audit` and `pip-audit` regularly
+- File uploads are validated and sanitized before processing
+- All inter-agent calls require JWT authentication after remediation
 
 ## License
 
